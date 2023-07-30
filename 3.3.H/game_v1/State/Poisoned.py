@@ -1,0 +1,3 @@
+
+class Poisoned:
+    pass

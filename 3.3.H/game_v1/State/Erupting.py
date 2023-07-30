@@ -1,0 +1,3 @@
+
+class Erupting:
+    pass

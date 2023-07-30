@@ -1,0 +1,3 @@
+
+class HealingPotion:
+    pass

@@ -1,0 +1,5 @@
+from .CharacterObstacleHandler import CharacterObstacleHandler
+from .CharacterTreasureHandler import CharacterTreasureHandler
+from .CharacterMonsterHandler import CharacterMonsterHandler
+from .CharacterNoneHandler import CharacterNoneHandler
+from .CollisionHandler import CollisionHandler

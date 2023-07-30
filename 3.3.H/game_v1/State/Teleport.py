@@ -1,0 +1,3 @@
+
+class Teleport:
+    pass

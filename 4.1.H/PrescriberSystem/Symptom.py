@@ -1,0 +1,4 @@
+
+
+class Symptom:
+    pass

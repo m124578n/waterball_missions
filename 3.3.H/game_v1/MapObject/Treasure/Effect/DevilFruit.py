@@ -1,0 +1,3 @@
+
+class DevilFruit:
+    pass

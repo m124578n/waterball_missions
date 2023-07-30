@@ -1,0 +1,3 @@
+
+class DokodemoDoor:
+    pass
