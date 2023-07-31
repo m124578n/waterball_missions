@@ -2,7 +2,7 @@ from . import CollisionHandler
 
 
 class RoleDifferentHandler(CollisionHandler):
-    def collision_condition(self, player, target):
+    def collision_condition(self, player, target) -> bool:
         from game_v2.MapObject import Character, Monster
         class_t = (Character, Monster)
         return isinstance(player, class_t) and isinstance(target, class_t)

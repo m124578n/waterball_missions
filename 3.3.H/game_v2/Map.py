@@ -18,7 +18,7 @@ class Map:
             print(f"{x}")
         return "this is a map"
     
-    def find_object_by_coord(self, x, y) -> MapObject:
+    def find_object_by_coord(self, x, y) -> MapObject | None:
         try:
             if x < 0 or y < 0:
                 raise

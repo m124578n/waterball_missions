@@ -13,6 +13,6 @@ class MapObject(ABC):
     def _set_symbol(self):
         pass
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.symbol
     

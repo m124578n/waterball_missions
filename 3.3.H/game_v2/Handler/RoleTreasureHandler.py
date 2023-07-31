@@ -2,7 +2,7 @@ from . import CollisionHandler
 
 
 class RoleTreasureHandler(CollisionHandler):
-    def collision_condition(self, player, target):
+    def collision_condition(self, player, target) -> bool:
         from game_v2.MapObject import Treasure
         return isinstance(target, Treasure)
 

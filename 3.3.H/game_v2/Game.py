@@ -47,7 +47,7 @@ class Game:
                 self.map.set_object_with_coord(x, y, map_object)
                 amount -= 1
                 
-    def __win_condition(self):
+    def __win_condition(self) -> bool:
         return True
     
     def __set_handler(self):

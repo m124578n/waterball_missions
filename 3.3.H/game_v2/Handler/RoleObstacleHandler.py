@@ -2,7 +2,7 @@ from . import CollisionHandler
 
 
 class RoleObstacleHandler(CollisionHandler):
-    def collision_condition(self, player, target):
+    def collision_condition(self, player, target) -> bool:
         from game_v2.MapObject import Obstacle
         return isinstance(target, Obstacle)
 

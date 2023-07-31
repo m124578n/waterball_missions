@@ -2,7 +2,7 @@ from . import CollisionHandler
 
 
 class RoleSameHandler(CollisionHandler):
-    def collision_condition(self, player, target):
+    def collision_condition(self, player, target) -> bool:
         return type(player) == type(target)
 
     def collision_result(self, player, target, map):
