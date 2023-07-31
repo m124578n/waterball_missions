@@ -8,5 +8,5 @@ class RoleSpaceHandler(CollisionHandler):
 
     def collision_result(self, player, target, map):
         print(f"角色 {player.symbol} 碰到了空地 角色移動 ~ ")
-        # TODO 移動
+        player.move(target, map)
     

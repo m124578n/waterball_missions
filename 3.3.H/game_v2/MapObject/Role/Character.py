@@ -27,6 +27,9 @@ class Character(Role):
 
     def touch(self):
         pass
+
+    def change_symbol(self, symbol):
+        self.symbol = symbol
     
     def take_turn(self, map: Map, collision_handler: CollisionHandler):
         print("玩家的回合~")
@@ -38,6 +41,7 @@ class Character(Role):
             if target is None:
                 print("你的移動不合法 ! ")
             else:
-                collision_handler.collision(self, target, map)
+                collision_handler.collision(self, target[0], map)
+                self.change_symbol(target[1])
         elif choose == 'b':
             pass
