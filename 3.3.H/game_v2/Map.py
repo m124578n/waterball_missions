@@ -20,6 +20,8 @@ class Map:
     
     def find_object_by_coord(self, x, y) -> MapObject:
         try:
+            if x < 0 or y < 0:
+                raise
             return self.map[x][y]
         except:
             return None
