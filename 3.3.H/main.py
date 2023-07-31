@@ -26,6 +26,7 @@ from game_v2.Handler import (
         RoleSpaceHandler
     )
 
+
 if __name__ == "__main__":
     map_obejcts = [
             [Obstacle, 10],
@@ -34,11 +35,11 @@ if __name__ == "__main__":
             [Monster, 10]
         ]
     handlers = [
-        RoleSpaceHandler(), 
-        RoleTreasureHandler(), 
-        RoleObstacleHandler(), 
-        RoleDifferentHandler(), 
-        RoleSameHandler()
+        RoleSpaceHandler(),
+        RoleSameHandler(),
+        RoleObstacleHandler(),
+        RoleTreasureHandler(),
+        RoleDifferentHandler()
         ]
     game = Game(map_obejcts, handlers)
     game.start()

@@ -2,7 +2,7 @@ import random
 
 from .Map import Map
 from .MapObject import Space, MapObject
-from .Handler import CollisionHandler, HandlerChain
+from .Handler import CollisionHandler
 
 
 class Game:
@@ -51,7 +51,10 @@ class Game:
         return True
     
     def __set_handler(self):
-        collision_handler = HandlerChain()
+        pointer = None
         for handler in self.__handlers:
-            collision_handler.set_next(handler)
-        self.collision_handler = collision_handler
+            if self.collision_handler is None:
+                self.collision_handler = handler
+            else:
+                pointer.next = handler
+            pointer = handler

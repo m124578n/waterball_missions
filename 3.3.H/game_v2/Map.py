@@ -19,7 +19,10 @@ class Map:
         return "this is a map"
     
     def find_object_by_coord(self, x, y) -> MapObject:
-        return self.map[x][y]
+        try:
+            return self.map[x][y]
+        except:
+            return None
     
     def set_object_with_coord(self, x, y, map_object):
         self.map[x][y] = map_object(x, y)
@@ -29,6 +32,15 @@ class Map:
     
     def remove_object_with_coord(self, x, y):
         self.map[x][y] = Space(x, y)
+
+    def find_around_objects(self, role) -> dict:
+        around = {
+            "w":self.find_object_by_coord(role.x-1, role.y),
+            "a":self.find_object_by_coord(role.x, role.y-1),
+            "s":self.find_object_by_coord(role.x+1, role.y),
+            "d":self.find_object_by_coord(role.x, role.y+1),
+            }
+        return around
     
     def find_character(self) -> Character:
         for x in self.map:

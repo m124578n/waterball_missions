@@ -5,7 +5,7 @@ from game_v2.MapObject import (
         Treasure,
         MapObject
     )
-from game_v2.Handler import HandlerChain
+from game_v2.Handler import CollisionHandler
 
 
 class Character(Role):
@@ -28,19 +28,16 @@ class Character(Role):
     def touch(self):
         pass
     
-    def take_turn(self, map: Map, collision_handler: HandlerChain):
+    def take_turn(self, map: Map, collision_handler: CollisionHandler):
         print("玩家的回合~")
         choose = input("請選擇你的動作 (a)move (b)attack : ")
         if choose == 'a':
             around_objects: dict = map.find_around_objects(self)
             move_choose = input("請選擇要前進的方向 wasd : ")
-            target = map.find_target_by_move_choose(self, move_choose)
-            result = collision_handler.collision(self, target)
-            if result == 'move':
-                self.move(target, map)
-            elif result == 'touch':
-                self.touch()
-            else:
+            target = around_objects.get(move_choose, None)
+            if target is None:
                 print("你的移動不合法 ! ")
+            else:
+                collision_handler.collision(self, target, map)
         elif choose == 'b':
             pass
