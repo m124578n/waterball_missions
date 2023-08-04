@@ -9,7 +9,7 @@ class Map:
         for x1 in range(x):
             temp1 = []
             for y1 in range(y):
-                map_object = Space(x1, y1)
+                map_object = Space(x1, y1, self)
                 temp1.append(map_object)
             self.map.append(temp1)
     
@@ -27,7 +27,7 @@ class Map:
             return None
     
     def set_object_with_coord(self, x, y, map_object):
-        self.map[x][y] = map_object(x, y)
+        self.map[x][y] = map_object(x, y, self)
     
     def move_object_with_coord(self, x, y, map_object):
         self.map[x][y] = map_object

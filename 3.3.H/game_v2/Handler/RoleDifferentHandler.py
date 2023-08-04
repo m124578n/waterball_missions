@@ -7,7 +7,7 @@ class RoleDifferentHandler(CollisionHandler):
         class_t = (Character, Monster)
         return isinstance(player, class_t) and isinstance(target, class_t)
 
-    def collision_result(self, player, target, map):
+    def collision_result(self, player, target):
         print(f"角色 {player.symbol} 遇上了角色 {target.symbol} 無法移動 ~ ")
         # TODO 
     

@@ -26,7 +26,7 @@ class Game:
     def __start_round(self):
         character = self.map.find_character()
         while self.__win_condition():
-            character.take_turn(self.map, self.collision_handler)
+            character.take_turn(self.collision_handler)
             self.__show_map()
     
     def __show_map(self):

@@ -9,19 +9,19 @@ class CollisionHandler(ABC):
         if self.next is None:
             self.next = handler
 
-    def collision(self, player, target, map):
+    def collision(self, player, target):
         if self.collision_condition(player, target):
-            self.collision_result(player, target, map)
+            self.collision_result(player, target)
         else:
             if self.next is None:
                 print("無符合的碰撞發生 ! ")
             else:
-                return self.next.collision(player, target, map)
+                return self.next.collision(player, target)
     
     @abstractmethod
     def collision_condition(self, player, target):
         pass
 
     @abstractmethod
-    def collision_result(self, player, target, map):
+    def collision_result(self, player, target):
         pass

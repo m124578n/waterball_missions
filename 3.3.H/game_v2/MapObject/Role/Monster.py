@@ -3,8 +3,8 @@ from .Role import Role
 
 
 class Monster(Role):
-    def __init__(self, x, y) -> None:
-        super().__init__(x, y)
+    def __init__(self, x, y, game_map) -> None:
+        super().__init__(x, y, game_map)
     
     def _set_symbol(self):
         self.symbol = 'M'

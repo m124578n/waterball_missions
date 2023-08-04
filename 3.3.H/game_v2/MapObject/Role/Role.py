@@ -3,8 +3,8 @@ from abc import ABC, abstractmethod
 
 
 class Role(MapObject, ABC):
-    def __init__(self, x, y) -> None:
-        super().__init__(x, y)
+    def __init__(self, x, y, game_map) -> None:
+        super().__init__(x, y, game_map)
         self._set_hp()
     
     @abstractmethod
