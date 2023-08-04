@@ -5,9 +5,9 @@ if TYPE_CHECKING:
 
 
 class MapObject(ABC):
-    def __init__(self, x ,y, game_map) -> None:
+    def __init__(self, x: int, y: int, game_map: 'Map') -> None:
         self.symbol = None
-        self.map: Map = game_map
+        self.map = game_map
         self.x = x
         self.y = y
         self._set_symbol()

@@ -1,10 +1,14 @@
+from typing import TYPE_CHECKING
 from .Role import Role
 from game_v2 import MapObject
 from game_v2.Handler import CollisionHandler
+if TYPE_CHECKING:
+    from .Monster import Monster
+    from game_v2.Map import Map
 
 
 class Character(Role):
-    def __init__(self, x, y, game_map) -> None:
+    def __init__(self, x: int, y: int, game_map: 'Map') -> None:
         super().__init__(x, y, game_map)
     
     def _set_symbol(self):
@@ -20,7 +24,7 @@ class Character(Role):
     def move(self, target: MapObject) -> bool:
         self.map.move_object_to_target(self, target)
         
-    def attack(self, targets: list):
+    def attack(self, targets: list['Monster']):
         for target in targets:
             target.be_attacked(self.damage)
 

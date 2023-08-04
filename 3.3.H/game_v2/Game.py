@@ -19,26 +19,26 @@ class Game:
         self.__init_map()
         self.__set_handler()
 
-    def start(self):
+    def start(self) -> None:
         while self.__win_condition():
             self.__start_round()
     
-    def __start_round(self):
+    def __start_round(self) -> None:
         character = self.map.find_character()
         while self.__win_condition():
             character.take_turn(self.collision_handler)
             self.__show_map()
     
-    def __show_map(self):
+    def __show_map(self) -> None:
         print(self.map)
     
-    def __init_map(self):
+    def __init_map(self) -> None:
         self.map = Map(self.__range_x, self.__range_y)
         for map_object in self.__map_objects:
             self.__create_map_object(map_object[0], map_object[1])
         self.__show_map()
     
-    def __create_map_object(self, map_object, amount):
+    def __create_map_object(self, map_object: MapObject, amount: int) -> None:
         while amount != 0:
             x = random.randint(0, self.__range_x -1)
             y = random.randint(0, self.__range_y -1)
@@ -50,7 +50,7 @@ class Game:
     def __win_condition(self) -> bool:
         return True
     
-    def __set_handler(self):
+    def __set_handler(self) -> None:
         pointer = None
         for handler in self.__handlers:
             if self.collision_handler is None:
