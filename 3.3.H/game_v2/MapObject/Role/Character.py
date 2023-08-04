@@ -44,4 +44,6 @@ class Character(Role):
                 collision_handler.collision(self, target[0], map)
                 self.change_symbol(target[1])
         elif choose == 'b':
-            pass
+            target_objects: list = map.find_attack_target_objects(self)
+            print(target_objects)
+            

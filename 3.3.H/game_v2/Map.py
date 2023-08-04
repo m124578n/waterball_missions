@@ -1,4 +1,4 @@
-from .MapObject import Space, MapObject, Character
+from .MapObject import Space, MapObject, Character, Monster, Obstacle, Role
 
 
 class Map:
@@ -49,6 +49,32 @@ class Map:
             "d":[self.find_object_by_coord(role.x, role.y+1), "→"],
             }
         return around
+    
+    def find_line_targets(self, start, stop, reverse, direction, role):
+        target_line = []
+        print(start, stop)
+        for i in range(start, stop, reverse):
+            print(i)
+            if direction == 'updown':
+                target = self.find_object_by_coord(i, role.y)
+            elif direction == 'rightleft':
+                target = self.find_object_by_coord(role.x, i)
+            if type(target) == Monster:
+                target_line.append(target)
+            elif type(target) == Obstacle:
+                break
+        return target_line
+    
+    def find_attack_target_objects(self, role: Role) -> list:
+        if role.symbol == "↑":
+            target_line = self.find_line_targets(role.x-1, 0-1, -1, 'updown', role)
+        elif role.symbol == "←":
+            target_line = self.find_line_targets(role.y-1, 0-1, -1, 'rightleft', role)
+        elif role.symbol == "↓":
+            target_line = self.find_line_targets(role.x+1, self.x_len, 1,'updown', role)
+        elif role.symbol == "→":
+            target_line = self.find_line_targets(role.y+1, self.y_len, 1,'rightleft', role)
+        return target_line
     
     def find_character(self) -> Character:
         for x in self.map:
