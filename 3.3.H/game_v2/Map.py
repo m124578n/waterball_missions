@@ -52,16 +52,14 @@ class Map:
     
     def find_line_targets(self, start, stop, reverse, direction, role):
         target_line = []
-        print(start, stop)
         for i in range(start, stop, reverse):
-            print(i)
             if direction == 'updown':
                 target = self.find_object_by_coord(i, role.y)
             elif direction == 'rightleft':
                 target = self.find_object_by_coord(role.x, i)
-            if type(target) == Monster:
+            if isinstance(target, Monster):
                 target_line.append(target)
-            elif type(target) == Obstacle:
+            elif isinstance(target, Obstacle):
                 break
         return target_line
     

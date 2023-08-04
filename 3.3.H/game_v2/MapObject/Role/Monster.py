@@ -18,6 +18,10 @@ class Monster(Role):
     def attack(self):
         pass
 
+    def be_attacked(self, damage):
+        self.hp -= damage
+        self.check_is_alive()
+
     def touch(self):
         pass
     

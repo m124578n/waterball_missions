@@ -1,10 +1,6 @@
 from .Role import Role
 from game_v2 import Map
-from game_v2.MapObject import (
-        Space,
-        Treasure,
-        MapObject
-    )
+from game_v2 import MapObject
 from game_v2.Handler import CollisionHandler
 
 
@@ -19,11 +15,19 @@ class Character(Role):
     def _set_hp(self):
         self.hp = 300
     
+    def _set_damage(self):
+        self.damage = 1000
+    
     def move(self, target: MapObject, map: Map) -> bool:
         map.move_object_to_target(self, target)
         
-    def attack(self):
-        pass
+    def attack(self, targets: list):
+        for target in targets:
+            target.be_attacked(self.damage)
+
+    def be_attacked(self, damage):
+        self.hp -= damage
+        self.check_is_alive()
 
     def touch(self):
         pass
@@ -44,6 +48,6 @@ class Character(Role):
                 collision_handler.collision(self, target[0], map)
                 self.change_symbol(target[1])
         elif choose == 'b':
-            target_objects: list = map.find_attack_target_objects(self)
-            print(target_objects)
+            targets: list = map.find_attack_target_objects(self)
+            self.attack(targets)
             
