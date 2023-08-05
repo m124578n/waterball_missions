@@ -28,7 +28,7 @@ from game_v2.Handler import (
 
 
 if __name__ == "__main__":
-    map_obejcts = [
+    map_objects = [
             [Obstacle, 10],
             [Treasure, 10],
             [Character, 1],
@@ -41,5 +41,5 @@ if __name__ == "__main__":
         RoleTreasureHandler(),
         RoleDifferentHandler()
         ]
-    game = Game(map_obejcts, handlers)
+    game = Game(map_objects, handlers)
     game.start()

@@ -15,22 +15,11 @@ class Character(Role):
         # ↑→↓←
         self.symbol = '↑'
 
-    def _set_hp(self):
-        self.hp = 300
-    
     def _set_damage(self):
         self.damage = 1000
-    
-    def move(self, target: MapObject) -> bool:
-        self.map.move_object_to_target(self, target)
-        
-    def attack(self, targets: list['Monster']):
-        for target in targets:
-            target.be_attacked(self.damage)
 
-    def be_attacked(self, damage):
-        self.hp -= damage
-        self.check_is_alive()
+    def _set_hp(self):
+        self.hp = 300
 
     def touch(self):
         pass
@@ -38,7 +27,7 @@ class Character(Role):
     def change_symbol(self, symbol):
         self.symbol = symbol
     
-    def take_turn(self, collision_handler: CollisionHandler):
+    def take_turn(self):
         print("玩家的回合~")
         choose = input("請選擇你的動作 (a)move (b)attack : ")
         if choose == 'a':
@@ -48,9 +37,11 @@ class Character(Role):
             if target is None:
                 print("你的移動不合法 ! ")
             else:
-                collision_handler.collision(self, target[0])
+                self.handler.collision(self, target[0])
                 self.change_symbol(target[1])
         elif choose == 'b':
+            # targets = self.map.find_all_monsters()
             targets: list = self.map.find_attack_target_objects(self)
+            print(f"攻擊了怪物 {targets}！")
             self.attack(targets)
             
