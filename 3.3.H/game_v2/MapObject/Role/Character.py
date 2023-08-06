@@ -1,9 +1,6 @@
 from typing import TYPE_CHECKING
 from .Role import Role
-from game_v2 import MapObject
-from game_v2.Handler import CollisionHandler
 if TYPE_CHECKING:
-    from .Monster import Monster
     from game_v2.Map import Map
 
 
@@ -21,27 +18,36 @@ class Character(Role):
     def _set_hp(self):
         self.hp = 300
 
-    def touch(self):
-        pass
+    def _set_max_hp(self):
+        self.max_hp = 300
 
     def change_symbol(self, symbol):
         self.symbol = symbol
-    
-    def take_turn(self):
-        print("玩家的回合~")
-        choose = input("請選擇你的動作 (a)move (b)attack : ")
-        if choose == 'a':
-            around_objects: dict = self.map.find_around_objects(self)
-            move_choose = input("請選擇要前進的方向 wasd : ")
+
+    def show_status(self):
+        print(self.map)
+        print(f"玩家現在血量 {self.hp} 狀態 {self.state}")
+
+    def choose(self):
+        while True:
+            choose = input(f"請選擇你的動作 {self.can_choose} : ")
+            if choose in self.can_choose:
+                break
+        return choose
+
+    def move_step(self):
+        around_objects: dict = self.map.find_around_objects(self)
+        while True:
+            move_choose = input(f"請選擇要前進的方向 {self.can_move_step} : ")
             target = around_objects.get(move_choose, None)
-            if target is None:
+            if move_choose not in self.can_move_step:
+                print("你的移動不合法 ! ")
+            elif target is None:
                 print("你的移動不合法 ! ")
             else:
-                self.handler.collision(self, target[0])
-                self.change_symbol(target[1])
-        elif choose == 'b':
-            # targets = self.map.find_all_monsters()
-            targets: list = self.map.find_attack_target_objects(self)
-            print(f"攻擊了怪物 {targets}！")
-            self.attack(targets)
-            
+                break
+        self.handler.collision(self, target[0])
+        self.change_symbol(target[1])
+
+    def default_attack(self):
+        return self.map.find_attack_target_objects(self)

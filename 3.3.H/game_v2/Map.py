@@ -1,3 +1,5 @@
+import random
+
 from .MapObject import Space, MapObject, Character, Monster, Obstacle, Role
 
 
@@ -28,9 +30,6 @@ class Map:
 
     def set_object_with_coord(self, x: int, y: int, map_object) -> None:
         self.map[x][y] = map_object(x, y, self)
-
-    def move_object_with_coord(self, x: int, y: int, map_object: MapObject) -> None:
-        self.map[x][y] = map_object
 
     def remove_object_with_coord(self, x: int, y: int) -> None:
         self.map[x][y] = Space(x, y, self)
@@ -91,3 +90,17 @@ class Map:
                 if isinstance(y, Monster):
                     monsters.append(y)
         return monsters
+
+    def find_all_different_role(self, role) -> list:
+        if isinstance(role, Character):
+            return self.find_all_monsters()
+        if isinstance(role, Monster):
+            return [self.find_character()]
+
+    def find_random_space(self) -> Space:
+        while True:
+            x = random.randint(0, self.x_len - 1)
+            y = random.randint(0, self.y_len - 1)
+            target = self.find_object_by_coord(x, y)
+            if isinstance(target, Space):
+                return target

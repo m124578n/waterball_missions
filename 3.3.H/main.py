@@ -18,28 +18,17 @@ from game_v2.MapObject import (
         Treasure
     )
 
-from game_v2.Handler import (
-        RoleTreasureHandler,
-        RoleDifferentHandler,
-        RoleObstacleHandler,
-        RoleSameHandler,
-        RoleSpaceHandler
-    )
+from game_v2.config import handlers
 
 
 if __name__ == "__main__":
     map_objects = [
             [Obstacle, 10],
-            [Treasure, 10],
+            [Treasure, 20],
             [Character, 1],
-            [Monster, 10]
+            [Monster, 5]
         ]
-    handlers = [
-        RoleSpaceHandler(),
-        RoleSameHandler(),
-        RoleObstacleHandler(),
-        RoleTreasureHandler(),
-        RoleDifferentHandler()
-        ]
+    handlers = handlers
+    print(map_objects)
     game = Game(map_objects, handlers)
     game.start()

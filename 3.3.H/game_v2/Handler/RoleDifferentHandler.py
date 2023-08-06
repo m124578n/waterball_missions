@@ -9,5 +9,4 @@ class RoleDifferentHandler(CollisionHandler):
 
     def collision_result(self, player, target):
         print(f"角色 {player.symbol} 遇上了角色 {target.symbol} 無法移動 ~ ")
-        # TODO 
     

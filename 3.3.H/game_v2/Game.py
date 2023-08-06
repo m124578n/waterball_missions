@@ -18,6 +18,7 @@ class Game:
         self.map: Map | None = None
         self.character = None
         self.monsters = []
+        self.round = 1
         self.__set_handler()
         self.__init_map()
 
@@ -26,11 +27,19 @@ class Game:
             self.__start_round()
     
     def __start_round(self) -> None:
+        print(f"第 {self.round} 回合")
         if self.__win_condition():
-            self.character.take_turn()
+            self.__character_take_turn()
         if self.__win_condition():
             self.__monsters_take_turn()
-        self.__show_map()
+        # self.__show_map()
+        self.round += 1
+
+    def __character_take_turn(self):
+        turn = self.character.turn
+        while turn > 0:
+            self.character.take_turn()
+            turn -= 1
 
     def __monsters_set_handler(self):
         for monster in self.monsters:
@@ -38,7 +47,10 @@ class Game:
 
     def __monsters_take_turn(self):
         for monster in self.monsters:
-            monster.take_turn()
+            turn = monster.turn
+            while turn > 0:
+                monster.take_turn()
+                turn -= 1
     
     def __show_map(self) -> None:
         print(self.map)
@@ -47,7 +59,6 @@ class Game:
         self.map = Map(self.__range_x, self.__range_y)
         for map_object in self.__map_objects:
             self.__create_map_object(map_object[0], map_object[1])
-        self.__show_map()
         self.character = self.map.find_character()
         self.character.set_collision_handler(self.collision_handler)
         self.monsters = self.map.find_all_monsters()

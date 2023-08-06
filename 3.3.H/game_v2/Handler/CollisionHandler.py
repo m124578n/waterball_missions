@@ -14,7 +14,7 @@ class CollisionHandler(ABC):
             self.collision_result(player, target)
         else:
             if self.next is None:
-                print("無符合的碰撞發生 ! ")
+                print(f"{player.symbol} 呆呆地站在原地 ! ")
             else:
                 return self.next.collision(player, target)
     

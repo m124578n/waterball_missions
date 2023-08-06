@@ -8,5 +8,5 @@ class RoleTreasureHandler(CollisionHandler):
 
     def collision_result(self, player, target):
         print(f"角色 {player.symbol} 遇到了寶物 {target.symbol} !!")
-        # TODO 開寶箱
+        player.touch(target)
     
