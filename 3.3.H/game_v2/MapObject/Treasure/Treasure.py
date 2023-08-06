@@ -1,27 +1,8 @@
 from typing import TYPE_CHECKING
 import random
-from .Content import (
-    AcceleratingPotion,
-    DevilFruit,
-    DokodemoDoor,
-    Poison,
-    KingsRock,
-    SuperStar,
-    HealingPotion
-)
 from game_v2.MapObject import MapObject
 if TYPE_CHECKING:
     from game_v2.Map import Map
-
-# contents = [
-#     [SuperStar(), 0.1],
-#     [Poison(), 0.25],
-#     [AcceleratingPotion(), 0.2],
-#     [HealingPotion(), 0.15],
-#     [DevilFruit(), 100],
-#     [KingsRock(), 0.1],
-#     [DokodemoDoor(), 0.1],
-# ]
 from game_v2 import config
 
 

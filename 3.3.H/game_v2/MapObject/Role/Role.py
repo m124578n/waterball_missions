@@ -15,7 +15,6 @@ class Role(MapObject, ABC):
         super().__init__(x, y, game_map)
         self.invincible = False
         self.max_hp = 0
-        self.time_limit = 0
         self.hp = 0
         self.damage = 0
         self.handler = None
@@ -51,9 +50,8 @@ class Role(MapObject, ABC):
         self.state = state
 
     def exit_state(self):
-        if self.time_limit == 0:
-            print(f"角色 {self.symbol} 離開狀態 {self.state}")
-            self.entry_state(self.state.next_state)
+        print(f"角色 {self.symbol} 離開狀態 {self.state}")
+        self.entry_state(self.state.next_state)
 
     def move(self, target):
         self.map.move_object_to_target(self, target)

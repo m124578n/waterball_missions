@@ -45,5 +45,5 @@ contents = [
     [HealingPotion(), 0.15],
     [DevilFruit(), 0.1],
     [KingsRock(), 0.1],
-    [DokodemoDoor(), 100],
+    [DokodemoDoor(), 0.1],
 ]
